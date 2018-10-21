@@ -1,0 +1,18 @@
+#!/bin/bash
+
+container_name=hollow-local
+
+echo "Building local container"
+docker build -q -t hollow-local docker 
+
+[ -z "$(docker ps -aq --filter name=${container_name})" ] || docker rm -f ${container_name}
+docker run -d --name ${container_name} -v ${PWD}:/var/lib/ghost/content/themes/hollow -p 3000:2368 hollow-local
+
+echo -n "Waiting for container to initialise..."
+until docker logs ${container_name} 2>&1 | grep -q "initial entrypoint"; do
+  echo -n "."
+  sleep 1
+done
+echo -e "\033[32mOK\033[00m"
+
+echo -e "Ghost running at \033[34mhttp://localhost:3000\033[00m"
