@@ -1,4 +1,15 @@
-#!/bin/bash
+#!/bin/bash -e
+
+required_bins=( "docker" "npm" )
+for b in "${required_bins[@]}"; do
+	if ! command -v ${b} &>/dev/null; then
+		echo "Required bin missing: ${b}"
+		exit 1
+	fi
+done
+
+npm install
+npm run build
 
 container_name=hollow-local
 
@@ -16,3 +27,6 @@ done
 echo -e "\033[32mOK\033[00m"
 
 echo -e "Ghost running at \033[34mhttp://localhost:3000\033[00m"
+
+echo "Starting asset watch"
+npm run watch
