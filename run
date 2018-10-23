@@ -26,7 +26,6 @@ until docker logs ${container_name} 2>&1 | grep -q "initial entrypoint"; do
 done
 echo -e "\033[32mOK\033[00m"
 
-echo -e "Ghost running at \033[34mhttp://localhost:3000\033[00m"
-
-echo "Starting asset watch"
-npm run watch
+echo -e "Ghost running at \033[34mhttp://localhost:3000\033[00m\n"
+echo -e "Admin Email: \033[34mghost@example.com\033[00m"
+echo -e "Admin Password: \033[34mghostadmin\033[00m"
