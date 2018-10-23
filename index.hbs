@@ -1,3 +1,20 @@
 {{!< default}}
 
-Index Page
+<div class="container">
+    {{#foreach posts}}
+    <a href="{{ url absolute=true }}" class="post-card">
+        <section class="cover-image" style="background-image: url({{ img_url feature_image }});"></section>
+        <section class="content">
+            <header>
+                <h2>{{ title }}</h2>
+                <time datetime="{{published_at}}">
+                    {{published_at}}
+                </time>
+            </header>
+    
+            <p>{{ excerpt }}</p>
+            <span></span>
+        </section>
+    </a>
+    {{/foreach}}
+</div>

@@ -18,6 +18,21 @@
     {{ghost_head}}
 </head>
 <body class="{{body_class}}">
+    <header class="site-header">
+        <div class="site-logo">
+            <a href="/">
+                {{#if @blog.logo}}
+                <img src="{{@blog.logo}}" alt="Logo">
+                {{else}}
+                {{@blog.title}}
+                {{/if}}
+            </a>
+        </div>
+        <div class="header-nav">
+            {{navigation}}
+        </div>
+    </header>
+    {{@config.show_site_title}}
 	{{{body}}}
 
 	{{ghost_foot}}
